@@ -18,10 +18,12 @@
       <tr>
         <th>Title</th>
         <th>Description</th>
+        <th> &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp;  &nbsp; &nbsp;Image</th>
         <th>Published</th>
         <th>Edit</th>  
          <th>Show </th>
          <th>Delete </th>
+
       </tr>
     </thead>
     <tbody>
@@ -30,6 +32,8 @@
       <tr>
         <td>{{$car->title}}</td>
         <td>{{$car->description}}</td>
+        <td><img src="{{ asset('assets/images/'.$car->image) }}" width="200px;" alt="car"> </td>        
+
         <!-- <td>{{$car->published?"yes": "No"}}</td> -->
         <td>
             @if($car->published)
@@ -38,9 +42,13 @@
                 No
             @endif
         </td>
+
         <td><a href="updateCar/{{ $car->id }}">Edit</a></td>
         <td><a href="showCar/{{ $car->id }}">Show</a></td>
-        <td><a href="deleteCar/{{ $car->id }}"onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+        <td><a href="deleteCar/{{ $car->id }}"onclick="return confirm('Are you sure you want to delete?')"> Delete</a></td>
+        
+
+
 
       </tr>
     @endforeach

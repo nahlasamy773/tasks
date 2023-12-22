@@ -96,7 +96,6 @@ class CarController extends Controller
 
 
 
-
                 $data['published']= isset($request->published);
                 Car::create ($data);
                     return redirect('cars');
@@ -133,14 +132,52 @@ class CarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
+    // public function update(Request $request, string $id)
+    // {
         
-        $data= $request->only($this->columns);
-        $data['published']= isset($request->published);
-        Car::where('id',$id)->update ($data);
-            return redirect('cars');
-    }
+    //     $data= $request->only($this->columns);
+    //     $data['published']= isset($request->published);
+    //     Car::where('id',$id)->update ($data);
+    //         return redirect('cars');
+    //     }
+
+//**          */
+
+public function update(Request $request, string $id)
+{
+    $messages = $this->messages();
+    $data = $request->validate([
+        'title' => 'required|string|max:50',
+        'description' => 'required|string',
+        'image' => 'nullable|mimes:png,jpg,jpeg|max:2048', // Make image field optional if you don't want to update it every time
+    ], $messages);
+
+
+        // Check if an image is uploaded
+        if ($request->hasFile('image')) {
+            // Upload and update image if a new one is provided
+            $fileName = $this->uploadFile($request->file('image'), 'assets/images');
+            $data['image'] = $fileName;
+        }
+    
+
+        $data['published'] = isset($request->published);
+
+        // Update the car record with the new data
+        $car = Car::findOrFail($id);
+        $car->update($data);
+
+
+
+    return redirect('cars')->with('success', 'Car updated successfully');
+
+
+}
+
+
+
+//*** */
+    
 
     /**
      * Remove the specified resource from storage.

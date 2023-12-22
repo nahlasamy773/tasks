@@ -97,3 +97,12 @@ Route::get('image', function () {
 });
 
 Route::post('imageUpload', [ExampleController::class,'upload'])->name('imageUpload');
+
+Route::get('editimage/{id}',[CarController::class,'edit'])->name('editimage');
+Route::put('updateimage/{id}',[CarController::class,'update'])->name('update');
+
+
+// <td><a href="/editimage/{{ $car->id }}" class="btn btn-suscess"> Edit </a></td>
+// Route::get('updateCar/{id}',[CarController::class,'edit']);
+// Route::put('update/{id}',[CarController::class,'update'])->name('update');
+
