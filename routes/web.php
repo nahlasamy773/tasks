@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CategoryController;
 
 
 /*
@@ -58,6 +59,10 @@ Route::post('logged', function () {
     return' you are logged in';
 })->name('logged');
 
+
+
+
+
 // we must use control in the URL
 //http://127.0.0.1/tasks/public/control
 Route::get('control', [ExampleController::class, 'show']);
@@ -105,4 +110,25 @@ Route::put('updateimage/{id}',[CarController::class,'update'])->name('update');
 // <td><a href="/editimage/{{ $car->id }}" class="btn btn-suscess"> Edit </a></td>
 // Route::get('updateCar/{id}',[CarController::class,'edit']);
 // Route::put('update/{id}',[CarController::class,'update'])->name('update');
+
+
+Route::get('testHome', function () {
+    return view('testHome');
+})->name('testHome');
+
+
+//404
+
+Route::get('404', function () {
+    return  view ('404');
+})->name('404');
+
+//contact
+
+Route::get('contact', function () {
+    return  view ('contact');
+})->name('contact');
+
+
+Route::resource('categories', CategoryController::class);
 

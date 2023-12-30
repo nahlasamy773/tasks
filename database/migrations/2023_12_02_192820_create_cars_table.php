@@ -17,6 +17,10 @@ return new class extends Migration
             $table->longText('description');
             $table->boolean('published');
             $table->string('image',100); 
+            //$table->foreignId('category_id')->constrained('categories')->default(1);
+            //$table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('category_id')->nullable()->constrained('categories');
+
             $table->softDeletes();
             $table->timestamps();
 
