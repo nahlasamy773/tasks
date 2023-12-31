@@ -20,7 +20,6 @@ return new class extends Migration
             //$table->foreignId('category_id')->constrained('categories')->default(1);
             //$table->foreignId('category_id')->constrained('categories');
             $table->foreignId('category_id')->nullable()->constrained('categories');
-
             $table->softDeletes();
             $table->timestamps();
 

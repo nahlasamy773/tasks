@@ -130,5 +130,5 @@ Route::get('contact', function () {
 })->name('contact');
 
 
-Route::resource('categories', CategoryController::class);
+//Route::resource('categories', CategoryController::class);
 

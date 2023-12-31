@@ -32,6 +32,7 @@
       <tr>
         <td>{{$car->title}}</td>
         <td>{{$car->description}}</td>
+        
         <td><img src="{{ asset('assets/images/'.$car->image) }}" width="200px;" alt="car"> </td>        
 
         <!-- <td>{{$car->published?"yes": "No"}}</td> -->

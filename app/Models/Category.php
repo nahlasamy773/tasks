@@ -10,9 +10,15 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-      
-        'cat-name' ,
+        'cat_name', // Correct column name
+        'updated_at',
+        'created_at',
+    ];
+    
 
-        ];
+        public function category()
+{
+    return $this->belongsTo(Category::class, 'category_id');
+}
     
 }
