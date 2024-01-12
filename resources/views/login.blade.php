@@ -18,6 +18,12 @@
       <label for="email">Email:</label>
       <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
     </div>
+
+    <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}" required>
+</div>
+
     <div class="form-group">
       <label for="pwd">Password:</label>
       <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">

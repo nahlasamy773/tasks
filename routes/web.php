@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
+
 
 
 /*
@@ -73,7 +75,7 @@ Route::get('control', [ExampleController::class, 'show']);
 //Route::get('storeCar',[CarController::class,'store']);
 
 // store data into car table
-Route::get('createCar',[CarController::class,'create'])->name('createCar');
+Route::get('createCar',[CarController::class,'create'])->middleware('verified')->name('createCar');
 Route::get('cars',[CarController::class,'index'])->name('cars');
 Route::get('updateCar/{id}',[CarController::class,'edit']);
 
@@ -125,10 +127,26 @@ Route::get('404', function () {
 
 //contact
 
-Route::get('contact', function () {
-    return  view ('contact');
-})->name('contact');
+// Route::get('contact', function () {
+//     return  view ('contact');
+// })->name('contact');
+
+
+
+// ...
+
+Route::get('contact', [ContactController::class, 'showContactForm'])->name('contact');
+
+Route::post('mail', [ContactController::class, 'contact_mail'])->name('mail');
+
 
 
 //Route::resource('categories', CategoryController::class);
 
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//lec12
+
+Route::get('test20', [ExampleController::class, 'createSession']);

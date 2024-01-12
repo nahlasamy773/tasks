@@ -21,9 +21,10 @@ return'Welcome to my first controller';
    }
 
 
-
+   public function createSession(){
+   session()->put('testSession', 'My first session value');
+      return 'session created ' . session('testSession') ;
+   }
 
    
-
-
 }

@@ -121,7 +121,6 @@
 		<!--/ End Contact Us -->
 
 
-
 		<!-- Start Contact Us -->
 		<section class="contact-us section">
 			<div class="container">
@@ -139,7 +138,8 @@
 								<h2>Contact With Us</h2>
 								<p>If you have any questions please fell free to contact with us.</p>
 								<!-- Form -->
-								<form class="form" method="post" action="mail/mail.php">
+								<form class="form" method="post" action="{{ url('contact_mail')}}">
+								@csrf
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="form-group">
@@ -166,13 +166,17 @@
 												<textarea name="message" placeholder="Your Message" required=""></textarea>
 											</div>
 										</div>
+
+
 										<div class="col-12">
 											<div class="form-group login-btn">
-												<button class="btn" type="submit">Send</button>
+												<button class="btn" input type="submit" value="send">Send</button>
 											</div>
+
 											<div class="checkbox">
 												<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Do you want to subscribe our Newsletter ?</label>
 											</div>
+											
 										</div>
 									</div>
 								</form>

@@ -123,4 +123,13 @@ return [
         ],
     ],
 
+
+    'smtp' => [
+        'driver' => env('MAIL_MAILER', 'smtp'),
+        // ...
+    ],
+
+
+
+
 ];
