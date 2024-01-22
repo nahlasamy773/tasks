@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Mail\WelcomeMail;
-use Mail; 
+use App\Mail\ContactMail;
+use App\Models\Contact;
+use Illuminate\Support\Facades\Mail;
+
+
 
 class ContactController extends Controller
 {
@@ -14,11 +16,22 @@ class ContactController extends Controller
     }
 
 
-    public function contact_mail(Request $request)
+    public function sendContactUs(Request $request)
     {
-        // return view('mail');
-        Mail::to ('test@gmail.com')->send(new WelcomeMail($request) );
-                return redirect('contact');
+
+        $data = $request->validate([
+            'name'=>'required|string|max:50',
+            'email'=> 'required|string',
+            'phone' => 'required|string',
+            'subject' => 'required',
+            'message' => 'required',
+            ]);
+
+            Contact::create($data);
+        Mail::to ('test@gmail.com')->send(
+            new ContactMail($data) );
+
+        return "mail sent!";
 
     }
 

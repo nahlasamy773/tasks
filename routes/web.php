@@ -70,7 +70,12 @@ Route::post('logged', function () {
 Route::get('control', [ExampleController::class, 'show']);
 
 
-
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ //...
+   
 // store data into car table
 //Route::get('storeCar',[CarController::class,'store']);
 
@@ -92,7 +97,7 @@ Route::put('update/{id}',[CarController::class,'update'])->name('update');
 
 Route::post('storeCar',[CarController::class,'store'])->name('storeCar');
 
-
+});
 //for image
 
 Route::get('test', function () {
@@ -137,7 +142,7 @@ Route::get('404', function () {
 
 Route::get('contact', [ContactController::class, 'showContactForm'])->name('contact');
 
-Route::post('mail', [ContactController::class, 'contact_mail'])->name('mail');
+Route::post('sendContactUs', [ContactController::class, 'sendContactUs'])->name('sendContactUs');
 
 
 
